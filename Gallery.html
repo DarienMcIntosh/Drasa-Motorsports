@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DRASA Motorsports — Gallery</title>
+    <link rel="icon" type="image/png" href="drasa.png" />
+    <link rel="stylesheet" href="drasa.css" />
+    <style>
+      .gal-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 2rem;
+        padding: 2.5rem 2.5rem 1.5rem;
+      }
+      .g-hint {
+        font-family: var(--f-data);
+        font-size: 0.62rem;
+        font-weight: 300;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .gal-cta {
+        padding: 4rem 2.5rem;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+      @media (max-width: 900px) {
+        .gal-head {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 2rem 1.25rem 1rem;
+        }
+        .gal-cta {
+          padding: 3rem 1.25rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="site-nav">
+      <a href="Index.html" class="nav-brand"
+        ><img src="img/drasa.png" alt="DRASA" class="nav-logo" /><span
+          class="nav-name"
+          >DRASA <span class="l">Motorsports</span></span
+        ></a
+      >
+      <div class="nav-links">
+        <a href="Index.html" class="nav-link">Home</a>
+        <div class="nav-dd">
+          <button class="nav-btn">About ▾</button>
+          <div class="dd-panel">
+            <a href="Aboutus.html" class="dd-link">About DRASA</a
+            ><a href="Site.html" class="dd-link">Site Documentation</a>
+          </div>
+        </div>
+        <a href="Gallery.html" class="nav-link active">Gallery</a
+        ><a href="Registration.html" class="nav-link">Registration</a
+        ><a href="Feedback.html" class="nav-link">Feedback</a>
+      </div>
+      <div class="gear-hud">
+        <span class="gear-hud-lbl">Gear</span
+        ><span class="gear-hud-val">3</span>
+      </div>
+    </nav>
+    <div class="page-wrap">
+      <div class="page-header">
+        <p class="page-kicker">Our Work</p>
+        <h1>The <span class="l">Gallery</span></h1>
+        <p class="page-meta">
+          Completed builds · Client projects · DRASA craftsmanship
+        </p>
+      </div>
+      <div class="stat-row">
+        <div class="stat-cell">
+          <span class="stat-val">12<span class="l">+</span></span
+          ><span class="stat-label">Completed Builds</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-val">3.0<span class="l">s</span></span
+          ><span class="stat-label">0–60 Evo VIII</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-val">20<span class="l">"</span></span
+          ><span class="stat-label">HRE Rims — Audi R8</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-val">-6<span class="l">°</span></span
+          ><span class="stat-label">Max Camber — Q50</span>
+        </div>
+      </div>
+      <div class="gal-head">
+        <div>
+          <p class="kicker">Portfolio</p>
+          <h2 class="s-head">Completed Builds</h2>
+        </div>
+        <p class="g-hint">Hover a card to reveal build details</p>
+      </div>
+
+      <style>
+        /* ── GALLERY SHOWCASE GRID ──────────────────────────────
+           2-column base, widens to 3 on large screens.
+           object-fit: contain = entire car always visible, never cropped.
+           Dark background fills any letterbox space naturally.
+        ────────────────────────────────────────────────────── */
+        .gal-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 3px;
+          background: #0d0f12;
+        }
+        @media (min-width: 1200px) {
+          .gal-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+
+        .gal-card {
+          position: relative;
+          height: 440px;
+          background: #111316;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        /* Full-width hero card */
+        .gal-card.hero-card {
+          grid-column: 1 / -1; /* always spans all columns */
+          height: 560px;
+        }
+
+        /* THE KEY FIX: contain shows the whole car */
+        .gal-card img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          object-position: center;
+          display: block;
+          transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .gal-card:hover img {
+          transform: scale(1.05);
+        }
+
+        /* Overlay — slides up on hover */
+        .gal-over {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 2rem 1.5rem 1.25rem;
+          background: linear-gradient(
+            to top,
+            rgba(13, 15, 18, 0.97) 0%,
+            rgba(13, 15, 18, 0.6) 55%,
+            transparent 100%
+          );
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          gap: 1rem;
+          transform: translateY(4px);
+          opacity: 0;
+          transition:
+            opacity 0.3s ease,
+            transform 0.3s ease;
+        }
+        .gal-card:hover .gal-over {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        .gal-name {
+          font-family: var(--f-display);
+          font-weight: 800;
+          font-size: 1.15rem;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+          color: #f0f2f4;
+          line-height: 1;
+        }
+        .gal-tag {
+          font-family: var(--f-data);
+          font-size: 0.58rem;
+          font-weight: 400;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: #e2ff00;
+          white-space: nowrap;
+          flex-shrink: 0;
+        }
+
+        /* Subtle always-visible name at bottom */
+        .gal-static {
+          position: absolute;
+          bottom: 0.85rem;
+          left: 1.25rem;
+          font-family: var(--f-display);
+          font-weight: 800;
+          font-size: 0.9rem;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+          color: rgba(240, 242, 244, 0.45);
+          line-height: 1;
+          pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+          .gal-grid {
+            grid-template-columns: 1fr;
+          }
+          .gal-card {
+            height: 300px;
+          }
+          .gal-card.hero-card {
+            height: 360px;
+          }
+        }
+      </style>
+
+      <div class="gal-grid">
+        <!-- 1: Nissan Skyline R34 (new) -->
+        <div class="gal-card">
+          <img src="img/r34.jpg" alt="Nissan Skyline GTR R34" loading="lazy" />
+          <span class="gal-static">Nissan Skyline R34</span>
+          <div class="gal-over">
+            <span class="gal-name">Nissan Skyline GTR R34</span>
+            <span class="gal-tag">JDM Icon</span>
+          </div>
+        </div>
+
+        <!-- 2: BMW M4 (new) -->
+        <div class="gal-card">
+          <img src="img/M4.jpg" alt="BMW M4 Competition" loading="lazy" />
+          <span class="gal-static">BMW M4 Competition</span>
+          <div class="gal-over">
+            <span class="gal-name">BMW M4 Competition</span>
+            <span class="gal-tag">Track Build</span>
+          </div>
+        </div>
+
+        <!-- 3: Toyota GR Supra (new) -->
+        <div class="gal-card">
+          <img src="img/supra.jpg" alt="Toyota GR Supra" loading="lazy" />
+          <span class="gal-static">Toyota GR Supra</span>
+          <div class="gal-over">
+            <span class="gal-name">Toyota GR Supra</span>
+            <span class="gal-tag">Stance</span>
+          </div>
+        </div>
+
+        <!-- 4: BMW M3 G80 (new) -->
+        <div class="gal-card">
+          <img src="img/bmw.jpg" alt="BMW M3 G80 Stance" loading="lazy" />
+          <span class="gal-static">BMW M3 G80</span>
+          <div class="gal-over">
+            <span class="gal-name">BMW M3 G80</span>
+            <span class="gal-tag">Stance Build</span>
+          </div>
+        </div>
+
+        <!-- 5: Mazda RX-7 -->
+        <div class="gal-card">
+          <img
+            src="img/mazda-rx7.jpg"
+            alt="Mazda RX-7 Turbo II — Stance 1990"
+            loading="lazy"
+          />
+          <span class="gal-static">Mazda RX-7 Turbo II</span>
+          <div class="gal-over">
+            <span class="gal-name">Mazda RX-7 Turbo II</span>
+            <span class="gal-tag">Stance · 1990</span>
+          </div>
+        </div>
+
+        <!-- 6: Mitsubishi Evo VIII -->
+        <div class="gal-card">
+          <img
+            src="img/evo-viii.jpg"
+            alt="Mitsubishi Evo VIII — Rally"
+            loading="lazy"
+          />
+          <span class="gal-static">Mitsubishi Evo VIII</span>
+          <div class="gal-over">
+            <span class="gal-name">Mitsubishi Evo VIII</span>
+            <span class="gal-tag">Rally · 0–60 3.0s</span>
+          </div>
+        </div>
+
+        <!-- 7: Infiniti Q50S -->
+        <div class="gal-card">
+          <img
+            src="img/infiniti-q50.jpg"
+            alt="Infiniti Q50S — Stance"
+            loading="lazy"
+          />
+          <span class="gal-static">Infiniti Q50S</span>
+          <div class="gal-over">
+            <span class="gal-name">Infiniti Q50S</span>
+            <span class="gal-tag">Stance · -6° Camber</span>
+          </div>
+        </div>
+
+        <!-- 8: Nissan GTR R35 -->
+        <div class="gal-card">
+          <img
+            src="img/nissan-gtr.jpg"
+            alt="Nissan GTR R35 — Race"
+            loading="lazy"
+          />
+          <span class="gal-static">Nissan GTR R35</span>
+          <div class="gal-over">
+            <span class="gal-name">Nissan GTR R35</span>
+            <span class="gal-tag">Race · Flash Tune</span>
+          </div>
+        </div>
+
+        <!-- 9: Porsche 911 Turbo S -->
+        <div class="gal-card">
+          <img
+            src="img/porsche-911.jpg"
+            alt="Porsche 911 Turbo S — Track"
+            loading="lazy"
+          />
+          <span class="gal-static">Porsche 911 Turbo S</span>
+          <div class="gal-over">
+            <span class="gal-name">Porsche 911 Turbo S</span>
+            <span class="gal-tag">Track · 2018</span>
+          </div>
+        </div>
+
+        <!-- 11: Porsche 992 — full-width hero closer -->
+        <div class="gal-card hero-card">
+          <img
+            src="img/porsche992.jpg"
+            alt="Porsche 992 GT3 — HRE Edition"
+            loading="lazy"
+          />
+          <span class="gal-static">Porsche 992 GT3</span>
+          <div class="gal-over">
+            <span class="gal-name">Porsche 992 GT3 — HRE Edition</span>
+            <span class="gal-tag">Daily Sports</span>
+          </div>
+        </div>
+
+        <!-- 12: Audi R8 FreshhKiicks — hero anchor -->
+        <div class="gal-card hero-card">
+          <img
+            src="img/audi-r8.jpg"
+            alt="Audi R8 — FreshhKiicks Edition"
+            loading="lazy"
+          />
+          <span class="gal-static">Audi R8 — FreshhKiicks</span>
+          <div class="gal-over">
+            <span class="gal-name">Audi R8 — FreshhKiicks Edition</span>
+            <span class="gal-tag">Daily Sports</span>
+          </div>
+        </div>
+
+        <!-- 13: Nissan R34 -->
+        <div class="gal-card">
+          <img src="img/s15.jpg" alt="Nissan Skyline GTR R34" loading="lazy" />
+          <span class="gal-static">Nissan Skyline R34</span>
+          <div class="gal-over">
+            <span class="gal-name">Nissan Skyline GTR R34</span>
+            <span class="gal-tag">JDM Icon</span>
+          </div>
+        </div>
+
+        <!-- 14: BMW E36 -->
+        <div class="gal-card">
+          <img src="img/e36.jpg" alt="BMW E36 M3" loading="lazy" />
+          <span class="gal-static">BMW E36 M3</span>
+          <div class="gal-over">
+            <span class="gal-name">BMW E36 M3</span>
+            <span class="gal-tag">Classic · 0–60 4.5s</span>
+          </div>
+        </div>
+
+        <!-- 15: BMW f82 -->
+        <div class="gal-card">
+          <img src="img/f82.jpg" alt="BMW M4 F82" loading="lazy" />
+          <span class="gal-static">BMW M4 F82</span>
+          <div class="gal-over">
+            <span class="gal-name">BMW M4 F82</span>
+            <span class="gal-tag">OEM+</span>
+          </div>
+        </div>
+      </div>
+      <div class="gal-cta">
+        <div>
+          <p class="kicker">Want a Build Like This?</p>
+          <h2
+            style="
+              font-family: var(--f-display);
+              font-size: clamp(1.75rem, 4vw, 3.25rem);
+              font-weight: 800;
+              text-transform: uppercase;
+              letter-spacing: 0.01em;
+              color: var(--white);
+            "
+          >
+            Your car could be next.
+          </h2>
+        </div>
+        <a href="Registration.html" class="btn btn-lime"
+          >Register Today <span class="arr">→</span></a
+        >
+      </div>
+      <footer class="site-footer">
+        <div class="footer-brand">
+          <img
+            src="img/drasa.png"
+            alt=""
+            class="footer-logo"
+            aria-hidden="true"
+          /><span class="footer-name"
+            >DRASA <span class="l">Motorsports</span></span
+          >
+        </div>
+        <span class="footer-txt">Lilliput, Montego Bay, Jamaica</span
+        ><span class="footer-txt">© 2025 DRASA Motorsports</span>
+      </footer>
+    </div>
+  </body>
+</html>

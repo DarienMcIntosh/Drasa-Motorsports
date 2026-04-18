@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DRASA Motorsports — Registration</title>
+    <link rel="icon" type="image/png" href="drasa.png" />
+    <link rel="stylesheet" href="drasa.css" />
+    <style>
+      .reg-layout {
+        display: grid;
+        grid-template-columns: 1fr 520px;
+        min-height: calc(100vh - var(--nav-h));
+      }
+      .reg-visual {
+        position: relative;
+        overflow: hidden;
+      }
+      .reg-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.48);
+        display: block;
+      }
+      .reg-vis-over {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 4rem 3rem;
+        background: linear-gradient(
+          to top,
+          rgba(13, 15, 18, 0.92) 0%,
+          transparent 55%
+        );
+      }
+      .reg-vis-over h2 {
+        font-family: var(--f-display);
+        font-weight: 800;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        text-transform: uppercase;
+        line-height: 0.95;
+        color: var(--white);
+        margin-bottom: 1.5rem;
+      }
+      .reg-vis-over h2 .l {
+        color: var(--lime);
+      }
+      .benefit-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+      }
+      .benefit {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.85rem;
+        padding: 0.72rem 1rem;
+        background: rgba(13, 15, 18, 0.55);
+        border-left: 2px solid var(--lime);
+        backdrop-filter: blur(6px);
+      }
+      .bnum {
+        font-family: var(--f-display);
+        font-size: 1rem;
+        font-weight: 800;
+        color: var(--lime);
+        line-height: 1;
+        flex-shrink: 0;
+      }
+      .btext h4 {
+        font-family: var(--f-body);
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: var(--white);
+        margin-bottom: 0.15rem;
+      }
+      .btext p {
+        font-family: var(--f-body);
+        font-size: 0.72rem;
+        font-weight: 300;
+        color: rgba(240, 242, 244, 0.5);
+        line-height: 1.5;
+      }
+      .reg-form {
+        padding: 4rem 3rem;
+        background: var(--surf);
+        border-left: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .frm-hdr {
+        margin-bottom: 2rem;
+      }
+      .frm-hdr h2 {
+        font-family: var(--f-display);
+        font-size: 1.75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        color: var(--white);
+        margin-bottom: 0.4rem;
+      }
+      .frm-hdr p {
+        font-family: var(--f-body);
+        font-size: 0.82rem;
+        font-weight: 300;
+        color: var(--muted);
+      }
+      @media (max-width: 1024px) {
+        .reg-layout {
+          grid-template-columns: 1fr;
+        }
+        .reg-visual {
+          height: 420px;
+        }
+        .reg-form {
+          padding: 2.5rem 1.25rem 4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="site-nav">
+      <a href="Index.html" class="nav-brand"
+        ><img src="img/drasa.png" alt="DRASA" class="nav-logo" /><span
+          class="nav-name"
+          >DRASA <span class="l">Motorsports</span></span
+        ></a
+      >
+      <div class="nav-links">
+        <a href="Index.html" class="nav-link">Home</a>
+        <div class="nav-dd">
+          <button class="nav-btn">About ▾</button>
+          <div class="dd-panel">
+            <a href="Aboutus.html" class="dd-link">About DRASA</a
+            ><a href="Site.html" class="dd-link">Site Documentation</a>
+          </div>
+        </div>
+        <a href="Gallery.html" class="nav-link">Gallery</a
+        ><a href="Registration.html" class="nav-link active">Registration</a
+        ><a href="Feedback.html" class="nav-link">Feedback</a>
+      </div>
+      <div class="gear-hud">
+        <span class="gear-hud-lbl">Gear</span
+        ><span class="gear-hud-val">4</span>
+      </div>
+    </nav>
+    <div class="page-wrap">
+      <div class="reg-layout">
+        <div class="reg-visual">
+          <img src="img/e36.jpg" alt="BMW E36" loading="eager" />
+          <div class="reg-vis-over">
+            <p class="kicker" style="margin-bottom: 1rem">Paddock Access</p>
+            <h2>Subscription<br /><span class="l">List.</span></h2>
+            <div class="benefit-list">
+              <div class="benefit">
+                <span class="bnum">01</span>
+                <div class="btext">
+                  <h4>Build Updates</h4>
+                  <p>First look at every completed project.</p>
+                </div>
+              </div>
+              <div class="benefit">
+                <span class="bnum">02</span>
+                <div class="btext">
+                  <h4>Exclusive Offers</h4>
+                  <p>Member pricing on services and parts.</p>
+                </div>
+              </div>
+              <div class="benefit">
+                <span class="bnum">03</span>
+                <div class="btext">
+                  <h4>Event Invitations</h4>
+                  <p>Private access to meets and track days.</p>
+                </div>
+              </div>
+              <div class="benefit">
+                <span class="bnum">04</span>
+                <div class="btext">
+                  <h4>Daily Content</h4>
+                  <p>Automotive knowledge to your inbox.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reg-form">
+          <div class="frm-hdr">
+            <h2>Register</h2>
+            <p>Join the DRASA Motorsports subscription list.</p>
+          </div>
+          <form
+            method="GET"
+            action="Confirmation.html"
+            onsubmit="return validateReg();"
+            novalidate
+          >
+            <div class="form-wrap">
+              <div class="form-grid">
+                <div class="form-grid form-2">
+                  <div class="fgroup">
+                    <label class="flabel" for="fn">First Name *</label
+                    ><input
+                      class="finput"
+                      type="text"
+                      id="fn"
+                      name="fname"
+                      placeholder="Darien"
+                      autocomplete="given-name"
+                      required
+                    />
+                  </div>
+                  <div class="fgroup">
+                    <label class="flabel" for="ln">Last Name *</label
+                    ><input
+                      class="finput"
+                      type="text"
+                      id="ln"
+                      name="lname"
+                      placeholder="McIntosh"
+                      autocomplete="family-name"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="fgroup">
+                  <label class="flabel" for="em">Email Address *</label
+                  ><input
+                    class="finput"
+                    type="email"
+                    id="em"
+                    name="email"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    required
+                  />
+                </div>
+                <div class="fgroup">
+                  <label class="flabel" for="dob">Date of Birth *</label
+                  ><input
+                    class="finput"
+                    type="date"
+                    id="dob"
+                    name="dob"
+                    required
+                  />
+                </div>
+                <fieldset style="border: none; padding: 0">
+                  <legend class="flabel" style="margin-bottom: 0.5rem">
+                    Gender *
+                  </legend>
+                  <div class="choice-grid">
+                    <label class="choice-tile" id="tm"
+                      ><input
+                        type="radio"
+                        name="gender"
+                        value="Male"
+                        onchange="selT('tm', 'tf')"
+                      />
+                      <div class="tile-dot"></div>
+                      <span class="tile-text">Male</span></label
+                    >
+                    <label class="choice-tile" id="tf"
+                      ><input
+                        type="radio"
+                        name="gender"
+                        value="Female"
+                        onchange="selT('tf', 'tm')"
+                      />
+                      <div class="tile-dot"></div>
+                      <span class="tile-text">Female</span></label
+                    >
+                  </div>
+                </fieldset>
+                <div
+                  style="
+                    display: flex;
+                    gap: 0.65rem;
+                    flex-wrap: wrap;
+                    margin-top: 0.25rem;
+                  "
+                >
+                  <button type="submit" class="btn btn-lime" style="flex: 1">
+                    Register <span class="arr">→</span>
+                  </button>
+                  <button
+                    type="reset"
+                    class="btn btn-ghost"
+                    onclick="resetT()"
+                    style="flex: 1"
+                  >
+                    Clear
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+          <p
+            style="
+              font-family: var(--f-data);
+              font-size: 0.6rem;
+              font-weight: 300;
+              letter-spacing: 0.12em;
+              text-transform: uppercase;
+              color: var(--dim);
+              margin-top: 1rem;
+              text-align: center;
+            "
+          >
+            Information used for membership purposes only.
+          </p>
+        </div>
+      </div>
+    </div>
+    <script>
+      function selT(on, off) {
+        document.getElementById(on).classList.add("on");
+        document.getElementById(off).classList.remove("on");
+      }
+      function resetT() {
+        document
+          .querySelectorAll(".choice-tile")
+          .forEach((t) => t.classList.remove("on"));
+      }
+      function validateReg() {
+        const f = [
+          { id: "fn", m: "Please enter your first name." },
+          { id: "ln", m: "Please enter your last name." },
+          { id: "em", m: "Please enter your email." },
+          { id: "dob", m: "Please enter your date of birth." },
+        ];
+        for (const x of f) {
+          const el = document.getElementById(x.id);
+          if (!el.value.trim()) {
+            el.focus();
+            alert(x.m);
+            return false;
+          }
+        }
+        if (!document.querySelector('input[name="gender"]:checked')) {
+          alert("Please select a gender.");
+          return false;
+        }
+        return confirm("Confirm your DRASA Motorsports subscription?");
+      }
+    </script>
+  </body>
+</html>

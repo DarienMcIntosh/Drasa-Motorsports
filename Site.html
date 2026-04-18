@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DRASA Motorsports — Site Documentation</title>
+    <link rel="icon" type="image/png" href="drasa.png" />
+    <link rel="stylesheet" href="drasa.css" />
+  </head>
+  <body>
+    <nav class="site-nav">
+      <a href="Index.html" class="nav-brand"
+        ><img src="img/drasa.png" alt="DRASA" class="nav-logo" /><span
+          class="nav-name"
+          >DRASA <span class="l">Motorsports</span></span
+        ></a
+      >
+      <div class="nav-links">
+        <a href="Index.html" class="nav-link">Home</a>
+        <div class="nav-dd">
+          <button class="nav-btn" style="color: var(--lime)">About ▾</button>
+          <div class="dd-panel">
+            <a href="Aboutus.html" class="dd-link">About DRASA</a
+            ><a href="Site.html" class="dd-link" style="color: var(--lime)"
+              >Site Documentation</a
+            >
+          </div>
+        </div>
+        <a href="Gallery.html" class="nav-link">Gallery</a
+        ><a href="Registration.html" class="nav-link">Registration</a
+        ><a href="Feedback.html" class="nav-link">Feedback</a>
+      </div>
+      <div class="gear-hud">
+        <span class="gear-hud-lbl">Gear</span
+        ><span class="gear-hud-val">2</span>
+      </div>
+    </nav>
+    <div class="page-wrap">
+      <div class="page-header">
+        <p class="page-kicker">Technical Reference</p>
+        <h1>Site <span class="l">Documentation</span></h1>
+        <p class="page-meta">DRASA Motorsports · 8 Pages</p>
+      </div>
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>HTML5</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>CSS3</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>JavaScript</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Responsive Design</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Form Validation</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>CSS Grid</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Syne Display Font</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>JetBrains Mono</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Parallax Hero</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Bento Grid</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Glass Panels</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>HTML5</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>CSS3</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>JavaScript</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Responsive Design</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Form Validation</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>CSS Grid</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Syne Display Font</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>JetBrains Mono</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Parallax Hero</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Bento Grid</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Glass Panels</span>
+          </div>
+        </div>
+      </div>
+      <div class="doc-layout">
+        <aside class="doc-toc">
+          <span class="toc-lbl">Contents</span>
+          <ul class="toc-list" id="toc">
+            <li><a href="#home" class="on">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#registration">Registration</a></li>
+            <li><a href="#feedback">Feedback</a></li>
+          </ul>
+        </aside>
+        <div>
+          <div class="doc-entry" id="home">
+            <h2>Home Page</h2>
+            <p>
+              The home page implements the
+              <strong>"Heritage Racing Sophisticate"</strong> aesthetic: a deep
+              cold navy-black (#0D0F12) that makes car photography "sing," with
+              surgical cyber-lime (#E2FF00) reserved exclusively for the primary
+              CTA button. The hero uses a parallax effect where the title block
+              shifts at 0.28× scroll speed, creating depth perception as the
+              user scrolls. "DRASA" renders as solid white (foreground),
+              "BUILDS." renders as an outline-only stroke (receding into the
+              image, creating a layered depth illusion). The scroll indicator is
+              positioned at the <strong>bottom-right</strong>, clear of all CTA
+              buttons. Services use a <strong>Bento Grid</strong> layout with
+              glass-panel cells (gradient borders via CSS mask technique).
+              Buttons feature a "liquid sweep" hover animation using a skewed
+              pseudo-element. The Syne typeface (editorial grotesque) paired
+              with JetBrains Mono (technical/engineering data labels) signals
+              both design taste and frontend expertise to hiring managers.
+            </p>
+          </div>
+          <div class="doc-entry" id="about">
+            <h2>About DRASA Motorsports</h2>
+            <p>
+              The About page opens with a <strong>brand names strip</strong> —
+              car makes displayed at 14% opacity, brightening to lime on hover —
+              communicating DRASA's range without cluttering the layout. The
+              sticky photo panel uses <code>filter:brightness(.82)</code>, the
+              minimum needed to allow the lime top-border to read. A full-width
+              cinematic cinema strip closes the editorial section.
+            </p>
+          </div>
+          <div class="doc-entry" id="gallery">
+            <h2>Gallery</h2>
+            <p>
+              The Gallery uses a
+              <strong>Norris-style masonry card grid</strong> referencing the
+              landonorris.com helmet gallery — rounded cards (3px), lime border
+              on hover, subtle scale transform, build name left and category tag
+              right at the bottom of each card (tag fades in on hover). Images
+              use <code>filter:saturate(.9) brightness(.88)</code> — minimal
+              degradation that maintains colour fidelity while providing
+              consistent dark-panel integration.
+            </p>
+          </div>
+          <div class="doc-entry" id="registration">
+            <h2>Registration &amp; Confirmation</h2>
+            <p>
+              Registration implements the
+              <strong>motivation-before-action</strong> UX principle: the left
+              panel shows a full-height build photo with benefit items
+              (motivation), the right panel delivers the form (action). Labels
+              are always visible above inputs (never placeholder-only). Gender
+              tiles show a gradient-border glass selected state. The
+              Confirmation page uses an animated lime square checkmark via CSS
+              keyframes.
+            </p>
+          </div>
+          <div class="doc-entry" id="feedback">
+            <h2>Feedback &amp; Confirmation</h2>
+            <p>
+              Feedback uses a <strong>sidebar + content</strong> layout. Stars
+              are keyboard-accessible with ARIA roles. Experience cards have
+              clear selected states with gradient borders. The Feedback
+              Confirmation uses a split: editorial text left with a scanning
+              lime animation bar, Car.gif animation right — kinetic brand
+              celebration appropriate to DRASA's speed-focused identity.
+            </p>
+          </div>
+        </div>
+      </div>
+      <footer class="site-footer">
+        <div class="footer-brand">
+          <img
+            src="img/drasa.png"
+            alt=""
+            class="footer-logo"
+            aria-hidden="true"
+          /><span class="footer-name"
+            >DRASA <span class="l">Motorsports</span></span
+          >
+        </div>
+        <span class="footer-txt"
+          >© 2025 DRASA Motorsports. All rights reserved.</span
+        >
+      </footer>
+    </div>
+    <script>
+      const secs = document.querySelectorAll(".doc-entry"),
+        lnks = document.querySelectorAll("#toc a");
+      const obs = new IntersectionObserver(
+        (es) =>
+          es.forEach((e) => {
+            if (e.isIntersecting) {
+              const id = e.target.id;
+              lnks.forEach((l) =>
+                l.classList.toggle("on", l.getAttribute("href") === "#" + id),
+              );
+            }
+          }),
+        { threshold: 0.35, rootMargin: "-80px 0px -55% 0px" },
+      );
+      secs.forEach((s) => obs.observe(s));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About DRASA Motorsports</title>
+    <link rel="icon" type="image/png" href="drasa.png" />
+    <link rel="stylesheet" href="drasa.css" />
+    <style>
+      .brand-bar {
+        border-bottom: 1px solid var(--border);
+        background: var(--surf);
+        padding: 1rem 2.5rem;
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+        overflow: hidden;
+      }
+      .bb-lbl {
+        font-family: var(--f-data);
+        font-size: 0.62rem;
+        font-weight: 300;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .bb-names {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+      .bb-n {
+        font-family: var(--f-display);
+        font-size: 0.9rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: rgba(240, 242, 244, 0.14);
+        transition: color 0.18s;
+        cursor: default;
+      }
+      .bb-n:hover {
+        color: var(--lime);
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        gap: 5rem;
+        padding: 5rem 2.5rem;
+        max-width: var(--max-w);
+        margin: 0 auto;
+        align-items: start;
+      }
+      .pullq {
+        font-family: var(--f-display);
+        font-size: 1.25rem;
+        font-weight: 800;
+        font-style: italic;
+        text-transform: uppercase;
+        color: var(--offwhite);
+        line-height: 1.3;
+        padding-left: 1.5rem;
+        border-left: 2px solid var(--lime);
+        margin: 2rem 0;
+      }
+      .about-copy p {
+        font-family: var(--f-body);
+        font-size: 0.9375rem;
+        font-weight: 300;
+        color: var(--muted);
+        line-height: 1.82;
+        margin-bottom: 1.1rem;
+      }
+      .about-copy p strong {
+        color: var(--offwhite);
+        font-weight: 500;
+      }
+      .photo-sticky {
+        position: sticky;
+        top: calc(var(--nav-h) + 2rem);
+      }
+      .photo-sticky img {
+        width: 100%;
+        height: 520px;
+        object-fit: cover;
+        filter: brightness(0.82);
+        display: block;
+        border-radius: 2px;
+      }
+      .photo-cap {
+        padding: 0.85rem 1.25rem;
+        background: var(--surf);
+        border-top: 2px solid var(--lime);
+      }
+      .photo-cap span {
+        font-family: var(--f-data);
+        font-size: 0.62rem;
+        font-weight: 300;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .photo-cap span em {
+        color: var(--lime);
+        font-style: normal;
+      }
+      .cinema {
+        position: relative;
+        height: 640px;
+        overflow: hidden;
+        border-top: 1px solid var(--border);
+      }
+      .cinema img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: brightness(0.5);
+        display: block;
+      }
+      .cinema-over {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: first baseline;
+        padding: 3.5rem 1rem;
+        margin: 0 auto;
+        background: linear-gradient(
+          to top,
+          rgba(13, 15, 18, 0.92) 0%,
+          transparent 55%
+        );
+      }
+      .cinema-over h2 {
+        font-family: var(--f-display);
+        font-size: clamp(3rem, 9vw, 8rem);
+        font-weight: 800;
+        text-transform: uppercase;
+        line-height: 0.9;
+        color: var(--white);
+      }
+      .cinema-over h2 .l {
+        color: var(--lime);
+      }
+      @media (max-width: 960px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+          padding: 3rem 1.25rem;
+        }
+        .photo-sticky {
+          position: static;
+        }
+        .photo-sticky img {
+          height: 320px;
+        }
+        .cinema {
+          height: 280px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="site-nav">
+      <a href="Index.html" class="nav-brand"
+        ><img src="img/drasa.png" alt="DRASA" class="nav-logo" /><span
+          class="nav-name"
+          >DRASA <span class="l">Motorsports</span></span
+        ></a
+      >
+      <div class="nav-links">
+        <a href="Index.html" class="nav-link">Home</a>
+        <div class="nav-dd">
+          <button class="nav-btn" style="color: var(--lime)">About ▾</button>
+          <div class="dd-panel">
+            <a href="Aboutus.html" class="dd-link" style="color: var(--lime)"
+              >About DRASA</a
+            ><a href="Site.html" class="dd-link">Site Documentation</a>
+          </div>
+        </div>
+        <a href="Gallery.html" class="nav-link">Gallery</a
+        ><a href="Registration.html" class="nav-link">Registration</a
+        ><a href="Feedback.html" class="nav-link">Feedback</a>
+      </div>
+      <div class="gear-hud">
+        <span class="gear-hud-lbl">Gear</span
+        ><span class="gear-hud-val">2</span>
+      </div>
+    </nav>
+    <div class="page-wrap">
+      <div class="page-header">
+        <p class="page-kicker">Who We Are</p>
+        <h1>About <span class="l">DRASA</span></h1>
+        <p class="page-meta">
+          Lilliput, Montego Bay · Partnered with DRASA Performance
+        </p>
+      </div>
+      <div class="brand-bar">
+        <span class="bb-lbl">Brands We Work With</span>
+        <div class="bb-names">
+          <span class="bb-n">BMW</span><span class="bb-n">Mercedes-Benz</span
+          ><span class="bb-n">Audi</span><span class="bb-n">Infiniti</span
+          ><span class="bb-n">Nissan</span><span class="bb-n">Porsche</span
+          ><span class="bb-n">Mitsubishi</span><span class="bb-n">Honda</span
+          ><span class="bb-n">Toyota</span><span class="bb-n">Mazda</span>
+        </div>
+      </div>
+      <div class="about-grid">
+        <div class="about-copy reveal">
+          <p class="kicker">Our Mission</p>
+          <h2
+            style="
+              font-family: var(--f-display);
+              font-weight: 800;
+              font-size: clamp(2.5rem, 6vw, 5rem);
+              text-transform: uppercase;
+              line-height: 0.9;
+              color: var(--white);
+              margin-bottom: 1.5rem;
+            "
+          >
+            Encapsulating<br />Enthusiasts'<br /><span class="l"
+              >Finish Product.</span
+            >
+          </h2>
+          <div class="rule-l" style="margin-bottom: 1.5rem"></div>
+          <p>
+            DRASA Motorsports was created to target
+            <strong>not only regular drivers</strong> but also dedicated
+            enthusiasts who want to discover the true potential locked inside
+            any vehicle.
+          </p>
+          <div class="pullq">
+            "We don't just service cars — we transform them into exactly what
+            they were meant to be."
+          </div>
+          <p>
+            We provide the best brands — Mercedes-Benz, Audi, BMW, Infiniti,
+            Honda, Toyota — with a top-class tuning station. For style: premium
+            rims, tyres, suspension. For presence: a signature exhaust. For
+            safety: brake systems from <strong>DRASA Performance</strong>.
+          </p>
+          <p class="kicker" style="margin-top: 3rem">Get In Touch</p>
+          <div class="info-grid">
+            <div class="info-cell">
+              <div class="info-lbl">Address</div>
+              <div class="info-val">Lilliput, Montego Bay, Jamaica</div>
+            </div>
+            <div class="info-cell">
+              <div class="info-lbl">Phone</div>
+              <div class="info-val">876-000-000</div>
+            </div>
+            <div class="info-cell">
+              <div class="info-lbl">Email</div>
+              <div class="info-val" style="word-break: break-word">
+                drasamotorsports@gmail.com
+              </div>
+            </div>
+          </div>
+          <div
+            style="
+              display: flex;
+              gap: 0.75rem;
+              flex-wrap: wrap;
+              margin-top: 2rem;
+            "
+          >
+            <a href="Gallery.html" class="btn btn-lime"
+              >View Builds <span class="arr">→</span></a
+            ><a href="Registration.html" class="btn btn-ghost">Join the Club</a>
+          </div>
+        </div>
+        <div class="photo-sticky reveal">
+          <img
+            src="img/bmw-m2.jpg"
+            alt="BMW M2 Competition — DRASA Build"
+            loading="lazy"
+          />
+          <div class="photo-cap">
+            <span><em>DRASA Build</em> — BMW M2 Competition</span>
+          </div>
+        </div>
+      </div>
+      <div class="cinema reveal">
+        <img
+          src="img/news.jpg"
+          alt="Porsche 992 — DRASA Build"
+          loading="lazy"
+        />
+        <div class="cinema-over">
+          <h2>The Standard<br />is <span class="l">Excellence.</span></h2>
+        </div>
+      </div>
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Engine Tuning</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Suspension Setup</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Custom Exhaust</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Flash Tune</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Wheel & Tyre Fitment</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Brake Upgrades</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Body & Aero Kits</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Stance Builds</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Engine Tuning</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Suspension Setup</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Custom Exhaust</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Flash Tune</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Wheel & Tyre Fitment</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Brake Upgrades</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Body & Aero Kits</span>
+          </div>
+          <div class="ticker-item">
+            <div class="t-dot"></div>
+            <span>Stance Builds</span>
+          </div>
+        </div>
+      </div>
+      <footer class="site-footer">
+        <div class="footer-brand">
+          <img
+            src="img/drasa.png"
+            alt=""
+            class="footer-logo"
+            aria-hidden="true"
+          /><span class="footer-name"
+            >DRASA <span class="l">Motorsports</span></span
+          >
+        </div>
+        <span class="footer-txt">876-000-000 · drasamotorsports@gmail.com</span
+        ><span class="footer-txt">© 2025 DRASA Motorsports</span>
+      </footer>
+    </div>
+    <script>
+      const io = new IntersectionObserver(
+        (es) =>
+          es.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          }),
+        { threshold: 0.1 },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

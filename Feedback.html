@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DRASA Motorsports — Feedback</title>
+    <link rel="icon" type="image/png" href="drasa.png" />
+    <link rel="stylesheet" href="drasa.css" />
+    <style>
+      .fb-layout {
+        display: grid;
+        grid-template-columns: 400px 1fr;
+        min-height: calc(100vh - var(--nav-h));
+      }
+      .fb-side {
+        border-right: 1px solid var(--border);
+        padding: 4rem 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        background: var(--surf);
+      }
+      .fb-side h2 {
+        font-family: var(--f-display);
+        font-weight: 800;
+        font-size: clamp(2.5rem, 4vw, 3.5rem);
+        text-transform: uppercase;
+        line-height: 0.9;
+        color: var(--white);
+      }
+      .fb-side h2 .l {
+        color: var(--lime);
+      }
+      .fb-side p {
+        font-family: var(--f-body);
+        font-size: 0.9rem;
+        font-weight: 300;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+      .fb-stat {
+        padding: 1.25rem;
+        background: var(--raised);
+        border-left: 2px solid var(--lime);
+      }
+      .fb-stat-num {
+        font-family: var(--f-display);
+        font-weight: 800;
+        font-size: 2.5rem;
+        color: var(--white);
+        line-height: 1;
+      }
+      .fb-stat-lbl {
+        font-family: var(--f-data);
+        font-size: 0.6rem;
+        font-weight: 300;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 0.25rem;
+      }
+      .fb-main {
+        padding: 4rem 3.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .fb-form-title {
+        font-family: var(--f-data);
+        font-size: 0.65rem;
+        font-weight: 400;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--lime);
+        margin-bottom: 2rem;
+      }
+      @media (max-width: 900px) {
+        .fb-layout {
+          grid-template-columns: 1fr;
+        }
+        .fb-side {
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+          padding: 3rem 1.25rem;
+        }
+        .fb-main {
+          padding: 2.5rem 1.25rem 4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="site-nav">
+      <a href="Index.html" class="nav-brand"
+        ><img src="img/drasa.png" alt="DRASA" class="nav-logo" /><span
+          class="nav-name"
+          >DRASA <span class="l">Motorsports</span></span
+        ></a
+      >
+      <div class="nav-links">
+        <a href="Index.html" class="nav-link">Home</a>
+        <div class="nav-dd">
+          <button class="nav-btn">About ▾</button>
+          <div class="dd-panel">
+            <a href="Aboutus.html" class="dd-link">About DRASA</a
+            ><a href="Site.html" class="dd-link">Site Documentation</a>
+          </div>
+        </div>
+        <a href="Gallery.html" class="nav-link">Gallery</a
+        ><a href="Registration.html" class="nav-link">Registration</a
+        ><a href="Feedback.html" class="nav-link active">Feedback</a>
+      </div>
+      <div class="gear-hud">
+        <span class="gear-hud-lbl">Gear</span
+        ><span class="gear-hud-val">3</span>
+      </div>
+    </nav>
+    <div class="page-wrap">
+      <div class="fb-layout">
+        <aside class="fb-side">
+          <div>
+            <p class="kicker" style="margin-bottom: 1rem">Your Voice</p>
+            <h2>Feed<br /><span class="l">back.</span></h2>
+            <div class="rule-l" style="margin-top: 1.5rem"></div>
+          </div>
+          <p>
+            Your feedback drives everything we do. Praise, criticism, or
+            suggestion — every response helps us build a better experience for
+            the DRASA community.
+          </p>
+          <div class="fb-stat">
+            <div class="fb-stat-num">100%</div>
+            <div class="fb-stat-lbl">of responses reviewed within 48 hours</div>
+          </div>
+        </aside>
+        <main class="fb-main">
+          <p class="fb-form-title">Feedback Form — Required fields marked *</p>
+          <form
+            name="fbForm"
+            action="FeedBack_Confirmation_Page.html"
+            method="post"
+            onsubmit="return validateFb();"
+            novalidate
+          >
+            <div class="form-wrap">
+              <div class="form-grid">
+                <div class="fgroup">
+                  <label class="flabel" for="fn">Your Name *</label
+                  ><input
+                    class="finput"
+                    type="text"
+                    id="fn"
+                    name="fname"
+                    placeholder="Full name"
+                    required
+                  />
+                </div>
+                <fieldset style="border: none; padding: 0">
+                  <legend class="flabel" style="margin-bottom: 0.5rem">
+                    Site Satisfaction
+                  </legend>
+                  <div class="star-row">
+                    <span
+                      class="star"
+                      onclick="setR(1)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="1 star"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      onclick="setR(2)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="2 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      onclick="setR(3)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="3 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      onclick="setR(4)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="4 stars"
+                      >★</span
+                    >
+                    <span
+                      class="star"
+                      onclick="setR(5)"
+                      tabindex="0"
+                      role="button"
+                      aria-label="5 stars"
+                      >★</span
+                    >
+                    <span class="star-lbl" id="rLbl" aria-live="polite"
+                      >Not rated</span
+                    >
+                  </div>
+                  <input type="hidden" name="satisfaction" id="rIn" />
+                </fieldset>
+                <div class="fgroup">
+                  <label class="flabel" for="comment">Comments</label
+                  ><textarea
+                    class="ftextarea"
+                    id="comment"
+                    name="Comment"
+                    placeholder="Tell us about your experience — what worked and what we can improve…"
+                  ></textarea>
+                </div>
+                <fieldset style="border: none; padding: 0">
+                  <legend class="flabel" style="margin-bottom: 0.5rem">
+                    Product Experience *
+                  </legend>
+                  <div class="exp-grid">
+                    <label class="exp-card" id="ec-ex"
+                      ><input
+                        type="radio"
+                        name="Experience"
+                        value="Excellent"
+                        onchange="selExp('ec-ex')"
+                      /><span class="exp-ico">🏆</span
+                      ><span class="exp-lbl">Excellent</span></label
+                    >
+                    <label class="exp-card" id="ec-go"
+                      ><input
+                        type="radio"
+                        name="Experience"
+                        value="Good"
+                        onchange="selExp('ec-go')"
+                      /><span class="exp-ico">👍</span
+                      ><span class="exp-lbl">Good</span></label
+                    >
+                    <label class="exp-card" id="ec-av"
+                      ><input
+                        type="radio"
+                        name="Experience"
+                        value="Average"
+                        onchange="selExp('ec-av')"
+                      /><span class="exp-ico">😐</span
+                      ><span class="exp-lbl">Average</span></label
+                    >
+                    <label class="exp-card" id="ec-ba"
+                      ><input
+                        type="radio"
+                        name="Experience"
+                        value="Bad"
+                        onchange="selExp('ec-ba')"
+                      /><span class="exp-ico">👎</span
+                      ><span class="exp-lbl">Bad</span></label
+                    >
+                  </div>
+                </fieldset>
+                <div style="margin-top: 0.25rem">
+                  <button
+                    type="submit"
+                    class="btn btn-lime"
+                    style="width: 100%"
+                  >
+                    Submit Feedback <span class="arr">→</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </main>
+      </div>
+      <footer class="site-footer">
+        <div class="footer-brand">
+          <img
+            src="img/drasa.png"
+            alt=""
+            class="footer-logo"
+            aria-hidden="true"
+          /><span class="footer-name"
+            >DRASA <span class="l">Motorsports</span></span
+          >
+        </div>
+        <span class="footer-txt">© 2025 DRASA Motorsports</span>
+      </footer>
+    </div>
+    <script>
+      const rl = ["", "Poor", "Fair", "Good", "Satisfactory", "Excellent"];
+      function setR(v) {
+        document.getElementById("rIn").value = v;
+        document.getElementById("rLbl").textContent = rl[v];
+        document
+          .querySelectorAll(".star")
+          .forEach((s, i) => s.classList.toggle("on", i < v));
+      }
+      function selExp(id) {
+        document
+          .querySelectorAll(".exp-card")
+          .forEach((c) => c.classList.remove("on"));
+        document.getElementById(id).classList.add("on");
+      }
+      function validateFb() {
+        if (!document.getElementById("fn").value.trim()) {
+          alert("Please enter your name.");
+          return false;
+        }
+        if (!document.querySelector('input[name="Experience"]:checked')) {
+          alert("Please rate your experience.");
+          return false;
+        }
+        return true;
+      }
+    </script>
+  </body>
+</html>

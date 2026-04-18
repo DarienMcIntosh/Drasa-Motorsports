@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DRASA Motorsports — Jamaica's Premier Tuning House</title>
+    <meta
+      name="description"
+      content="Encapsulating Enthusiasts' Finish Product. Premium automotive tuning and performance builds in Montego Bay, Jamaica."
+    />
+    <meta name="author" content="Darien McIntosh" />
+    <link rel="icon" type="image/png" href="img/drasa.png" />
+    <link rel="stylesheet" href="drasa.css" />
+    <style>
+      /* ══ LOADING SCREEN ════════════════════════════════════════
+     Full-page overlay with DRASA logo + lime progress bar.
+     Fades out at 2.2s so hero animations follow naturally.
+  ══════════════════════════════════════════════════════════ */
+      #loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: #0d0f12;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+        transition:
+          opacity 0.6s ease,
+          visibility 0.6s ease;
+      }
+      #loader.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      /* Logo mark */
+      .loader-logo {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        animation: loaderPulse 1.2s ease-in-out infinite alternate;
+      }
+      @keyframes loaderPulse {
+        from {
+          opacity: 0.5;
+          transform: scale(0.96);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Wordmark below the mark */
+      .loader-name {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 1rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(240, 242, 244, 0.6);
+        margin-top: -1.5rem;
+      }
+      .loader-name .l {
+        color: #e2ff00;
+      }
+
+      /* Slim progress bar */
+      .loader-bar-wrap {
+        width: 160px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.08);
+        overflow: hidden;
+      }
+      .loader-bar {
+        height: 100%;
+        width: 0%;
+        background: #e2ff00;
+        animation: loaderFill 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+      @keyframes loaderFill {
+        0% {
+          width: 0%;
+        }
+        60% {
+          width: 75%;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+
+      /* Tagline */
+      .loader-tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.55rem;
+        font-weight: 300;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: rgba(240, 242, 244, 0.25);
+        margin-top: -1rem;
+      }
+
+      /* Prevent scroll while loading */
+      body.loading {
+        overflow: hidden;
+      }
+
+      /* ══ HERO ══════════════════════════════════════════════════
+     DRASA   → solid white, z-index 3 (in front)
+     BUILDS. → outline only (stroke), z-index 1 (recedes into image)
+     Scrolling shifts the text at different speeds (parallax)
+  ══════════════════════════════════════════════════════════ */
+      .hero {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        min-height: 660px;
+        overflow: hidden;
+      }
+
+      /* Full-bleed photo — minimal filter, let it breathe */
+      .hero-photo {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .hero-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 62% center;
+        filter: none; /* NO heavy filter — crisp photography */
+        display: block;
+      }
+      /* Gradient: strong on the left for text, natural on the right */
+      .hero-photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            to right,
+            rgba(13, 15, 18, 0.97) 0%,
+            rgba(13, 15, 18, 0.72) 38%,
+            rgba(13, 15, 18, 0.12) 65%,
+            transparent 80%
+          ),
+          linear-gradient(to top, rgba(13, 15, 18, 0.75) 0%, transparent 40%);
+        z-index: 1;
+      }
+
+      /* ── TITLE — the centrepiece ──── */
+      .hero-text {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 3;
+        padding: 0 2.5rem 5.5rem;
+        max-width: 760px;
+        will-change: transform; /* parallax target */
+      }
+
+      .hero-eyebrow {
+        font-family: var(--f-data);
+        font-size: 0.65rem;
+        font-weight: 400;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: var(--lime);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+        opacity: 0;
+        animation: hIn 0.7s ease 0.25s forwards;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        width: 26px;
+        height: 1px;
+        background: var(--lime);
+        flex-shrink: 0;
+      }
+
+      /* Line 1 — solid, dominant, closest to viewer */
+      .ht-drasa {
+        display: block;
+        font-family: var(--f-display);
+        font-weight: 800;
+        font-size: clamp(5.5rem, 10.5vw, 12rem);
+        text-transform: uppercase;
+        letter-spacing: 0.01em;
+        line-height: 0.86;
+        color: var(--white);
+        opacity: 0;
+        animation: hIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.38s forwards;
+      }
+
+      /* Bridge — italic, thin, feels like a subtitle */
+      .ht-bridge {
+        display: block;
+        font-family: var(--f-display);
+        font-weight: 700;
+        font-size: clamp(1rem, 2vw, 1.8rem);
+        font-style: italic;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: rgba(240, 242, 244, 0.35);
+        line-height: 1;
+        margin: 0.3rem 0 0.2rem;
+        opacity: 0;
+        animation: hIn 0.7s ease 0.52s forwards;
+      }
+
+      /* Line 3 — outline only, appears to recede behind the car */
+      .ht-builds {
+        display: block;
+        font-family: var(--f-display);
+        font-weight: 800;
+        font-size: clamp(5.5rem, 10.5vw, 12rem);
+        text-transform: uppercase;
+        letter-spacing: 0.01em;
+        line-height: 0.88;
+        color: transparent;
+        /* Outline creates "behind glass" depth illusion */
+        -webkit-text-stroke: 1.5px rgba(240, 242, 244, 0.18);
+        opacity: 0;
+        animation: hIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.65s forwards;
+      }
+
+      .hero-sub {
+        font-family: var(--f-body);
+        font-size: 1rem;
+        font-weight: 300;
+        color: rgba(240, 242, 244, 0.5);
+        line-height: 1.78;
+        max-width: 42ch;
+        margin: 1.75rem 0 2rem;
+        opacity: 0;
+        animation: hIn 0.7s ease 0.82s forwards;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 0.85rem;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: hIn 0.7s ease 0.96s forwards;
+      }
+
+      @keyframes hIn {
+        from {
+          opacity: 0;
+          transform: translateY(22px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ── SCROLL INDICATOR — centered bottom, mouse-icon design ── */
+      .scroll-ind {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        opacity: 0;
+        animation: fadeIn 1s ease 1.3s forwards;
+      }
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Mouse shell */
+      .s-mouse {
+        width: 22px;
+        height: 34px;
+        border: 1.5px solid rgba(255, 255, 255, 0.25);
+        border-radius: 11px;
+        position: relative;
+      }
+      /* Scroll wheel bead inside mouse */
+      .s-mouse::before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 6px;
+        background: var(--lime);
+        border-radius: 2px;
+        animation: mouseScroll 1.8s ease-in-out infinite;
+      }
+      @keyframes mouseScroll {
+        0% {
+          top: 5px;
+          opacity: 1;
+        }
+        75% {
+          top: 18px;
+          opacity: 0;
+        }
+        76% {
+          top: 5px;
+          opacity: 0;
+        }
+        100% {
+          top: 5px;
+          opacity: 1;
+        }
+      }
+
+      .s-txt {
+        font-family: var(--f-data);
+        font-size: 0.48rem;
+        font-weight: 300;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: rgba(240, 242, 244, 0.3);
+        writing-mode: horizontal-tb; /* ← horizontal, not vertical */
+      }
+
+      /* Photo label — bottom LEFT so it never touches the scroll indicator */
+      .hero-label {
+        position: absolute;
+        bottom: 2.5rem;
+        right: 2.5rem;
+        z-index: 4;
+        font-family: var(--f-data);
+        font-size: 0.6rem;
+        font-weight: 300;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(240, 242, 244, 0.3);
+        background: rgba(13, 15, 18, 0.55);
+        padding: 0.3rem 0.6rem;
+        border-left: 2px solid var(--lime);
+        backdrop-filter: blur(6px);
+        opacity: 0;
+        animation: fadeIn 0.8s ease 1.1s forwards;
+      }
+
+      /* ══ BUILDS SECTION ═══════════════════════════════════════ */
+      .builds-section {
+        border-top: 1px solid var(--border);
+      }
+      .builds-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 2rem;
+        padding: 4rem 2.5rem 1.5rem;
+      }
+
+      /* ══ ABOUT SPLIT ══════════════════════════════════════════ */
+      .about-split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 560px;
+        border-top: 1px solid var(--border);
+      }
+      .about-img {
+        position: relative;
+        overflow: hidden;
+      }
+      .about-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.8);
+        transition: filter 0.4s;
+      }
+      .about-img:hover img {
+        filter: brightness(0.68);
+      }
+      .about-img::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to right, transparent 65%, var(--bg) 100%);
+        pointer-events: none;
+      }
+      .about-copy {
+        padding: 5rem 4rem 5rem 3.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: var(--bg);
+      }
+
+      /* ══ CTA BAND ═════════════════════════════════════════════ */
+      .cta-band {
+        background: var(--surf);
+        padding: 5.5rem 2.5rem;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        flex-wrap: wrap;
+        position: relative;
+      }
+      /* Subtle lime accent line */
+      .cta-band::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 3px;
+        height: 100%;
+        background: var(--lime);
+      }
+      .cta-hl {
+        font-family: var(--f-display);
+        font-weight: 800;
+        font-size: clamp(2rem, 5vw, 4rem);
+        text-transform: uppercase;
+        line-height: 0.95;
+        color: var(--white);
+      }
+      .cta-sub {
+        font-family: var(--f-body);
+        font-size: 0.9375rem;
+        color: var(--muted);
+        margin-top: 0.75rem;
+      }
+
+      /* ══ RESPONSIVE ═══════════════════════════════════════════ */
+      @media (max-width: 1100px) {
+        .about-split {
+          grid-template-columns: 1fr;
+        }
+        .about-img {
+          height: 400px;
+        }
+        .about-img::after {
+          background: linear-gradient(to top, var(--bg) 0%, transparent 50%);
+        }
+        .about-copy {
+          padding: 3rem 1.5rem;
+        }
+      }
+      @media (max-width: 768px) {
+        .hero-text {
+          padding: 0 1.25rem 6rem;
+        }
+        .builds-head {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 3rem 1.25rem 1.5rem;
+        }
+        .cta-band {
+          padding: 3.5rem 1.25rem;
+        }
+        .scroll-ind {
+          bottom: 1.5rem;
+        }
+        .hero-label {
+          left: 1.25rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── LOADING SCREEN ──────────────────────────────────── -->
+    <div id="loader" role="status" aria-label="Loading DRASA Motorsports">
+      <img src="img/drasa.png" alt="DRASA Motorsports" class="loader-logo" />
+      <div class="loader-name">DRASA <span class="l">Motorsports</span></div>
+      <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+      <div class="loader-tag">Encapsulating Enthusiasts' Finish Product</div>
+    </div>
+
+    <!-- ── NAVIGATION ──────────────────────────────────────── -->
+    <nav class="site-nav" id="nav">
+      <a href="Index.html" class="nav-brand">
+        <img src="img/drasa.png" alt="DRASA" class="nav-logo" />
+        <span class="nav-name">DRASA <span class="l">Motorsports</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="Index.html" class="nav-link active">Home</a>
+        <div class="nav-dd">
+          <button class="nav-btn">About ▾</button>
+          <div class="dd-panel">
+            <a href="Aboutus.html" class="dd-link">About DRASA</a>
+            <a href="Site.html" class="dd-link">Site Documentation</a>
+          </div>
+        </div>
+        <a href="Gallery.html" class="nav-link">Gallery</a>
+        <a href="Registration.html" class="nav-link">Registration</a>
+        <a href="Feedback.html" class="nav-link">Feedback</a>
+      </div>
+      <div class="gear-hud" id="gearHud">
+        <span class="gear-hud-lbl">Gear</span>
+        <span class="gear-hud-val" id="gearVal">N</span>
+      </div>
+    </nav>
+
+    <!-- ── HERO ─────────────────────────────────────────────── -->
+    <section class="hero" aria-label="DRASA Motorsports — Hero">
+      <div class="hero-photo">
+        <img
+          src="img/audi-r8.jpg"
+          alt="Audi R8 — DRASA Performance Build"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+
+      <!-- Parallax text container -->
+      <div class="hero-text" id="heroText">
+        <p class="hero-eyebrow">Jamaica's Premier Tuning & Performance House</p>
+        <span class="ht-drasa">DRASA</span>
+        <span class="ht-bridge">Motorsports</span>
+        <span class="ht-builds">BUILDS.</span>
+        <p class="hero-sub">
+          Encapsulating enthusiasts' finish product — precision tuning,
+          breathtaking builds, and an unmatched passion for automotive
+          excellence in Jamaica.
+        </p>
+        <div class="hero-actions">
+          <a href="Gallery.html" class="btn btn-lime"
+            >View Builds <span class="arr">→</span></a
+          >
+          <a href="Registration.html" class="btn btn-ghost">Join the Club</a>
+        </div>
+      </div>
+
+      <!-- Photo attribution -->
+      <div class="hero-label" aria-hidden="true">
+        Audi R8 · FreshhKiicks Edition
+      </div>
+
+      <!-- Scroll indicator — BOTTOM CENTER, mouse icon -->
+      <div class="scroll-ind" aria-hidden="true">
+        <div class="s-mouse"></div>
+        <span class="s-txt">Scroll</span>
+      </div>
+    </section>
+
+    <!-- ── STATS ─────────────────────────────────────────────── -->
+    <div class="stat-row" role="region" aria-label="Build statistics">
+      <div class="stat-cell">
+        <span class="stat-val">10<span class="l">+</span></span>
+        <span class="stat-label">Completed Builds</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-val">3.0<span class="l">s</span></span>
+        <span class="stat-label">0–60 — Evo VIII</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-val">20<span class="l">"</span></span>
+        <span class="stat-label">HRE Rims — Audi R8</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-val">-6<span class="l">°</span></span>
+        <span class="stat-label">Max Camber — Q50</span>
+      </div>
+    </div>
+
+    <!-- ── SERVICES TICKER ──────────────────────────────────── -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Engine Tuning</span>
+        </div>
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Suspension Setup</span>
+        </div>
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Custom Exhaust</span>
+        </div>
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Flash Tune</span>
+        </div>
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Wheel & Tyre Fitment</span>
+        </div>
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Brake Upgrades</span>
+        </div>
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Body & Aero Kits</span>
+        </div>
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Stance Builds</span>
+        </div>
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Camber Alignment</span>
+        </div>
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Performance Parts</span>
+        </div>
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Engine Tuning</span>
+        </div>
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Suspension Setup</span>
+        </div>
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Custom Exhaust</span>
+        </div>
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Flash Tune</span>
+        </div>
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Wheel & Tyre Fitment</span>
+        </div>
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Brake Upgrades</span>
+        </div>
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Body & Aero Kits</span>
+        </div>
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Stance Builds</span>
+        </div>
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Camber Alignment</span>
+        </div>
+        <div class="ticker-item">
+          <div class="t-dot"></div>
+          <span>Performance Parts</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FEATURED BUILDS ───────────────────────────────────── -->
+    <section class="builds-section" aria-labelledby="builds-h">
+      <div class="builds-head">
+        <div>
+          <p class="kicker">Selected Work</p>
+          <h2 class="s-head" id="builds-h">The Portfolio</h2>
+        </div>
+        <a href="Gallery.html" class="btn btn-ghost"
+          >Full Gallery <span class="arr">→</span></a
+        >
+      </div>
+
+      <!-- ── SHOWCASE GRID ────────────────────────────────────
+           Every card uses object-fit:contain so images are fully
+           visible — no cropping. Dark bg fills any empty space.
+      ─────────────────────────────────────────────────────── -->
+      <style>
+        /* Showcase grid — 2 equal columns, auto rows */
+        .showcase-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 3px;
+          background: #0d0f12;
+        }
+
+        /* Individual card */
+        .sc-card {
+          position: relative;
+          overflow: hidden;
+          background: #111316;
+          /* Fixed height ensures all cards are the same size */
+          height: 420px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        /* Full-size image — contain so the ENTIRE car is always visible */
+        .sc-card img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          object-position: center;
+          display: block;
+          transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .sc-card:hover img {
+          transform: scale(1.04);
+        }
+
+        /* Wide card — spans both columns, taller, hero feature */
+        .sc-card.wide {
+          grid-column: span 2;
+          height: 520px;
+        }
+
+        /* Bottom label bar */
+        .sc-label {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 1.4rem 1.5rem 1.2rem;
+          background: linear-gradient(
+            to top,
+            rgba(13, 15, 18, 0.96) 0%,
+            rgba(13, 15, 18, 0.6) 55%,
+            transparent 100%
+          );
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          gap: 1rem;
+          opacity: 0;
+          transform: translateY(6px);
+          transition:
+            opacity 0.3s ease,
+            transform 0.3s ease;
+        }
+        .sc-card:hover .sc-label {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        .sc-name {
+          font-family: var(--f-display);
+          font-weight: 800;
+          font-size: 1.1rem;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+          color: #f0f2f4;
+          line-height: 1;
+        }
+        .sc-cat {
+          font-family: var(--f-data);
+          font-size: 0.58rem;
+          font-weight: 400;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: #e2ff00;
+          white-space: nowrap;
+          flex-shrink: 0;
+        }
+
+        /* Always-visible subtle name at bottom (non-hover) */
+        .sc-name-static {
+          position: absolute;
+          bottom: 1rem;
+          left: 1.25rem;
+          font-family: var(--f-display);
+          font-weight: 800;
+          font-size: 0.95rem;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+          color: rgba(240, 242, 244, 0.5);
+          line-height: 1;
+          pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+          .showcase-grid {
+            grid-template-columns: 1fr;
+          }
+          .sc-card {
+            height: 300px;
+          }
+          .sc-card.wide {
+            grid-column: span 1;
+            height: 340px;
+          }
+        }
+      </style>
+
+      <div class="showcase-grid">
+        <!-- Row 1: Nissan R34 + BMW M4 -->
+        <div class="sc-card">
+          <img src="img/r34.jpg" alt="Nissan Skyline GTR R34" loading="lazy" />
+          <span class="sc-name-static">Nissan Skyline R34</span>
+          <div class="sc-label">
+            <span class="sc-name">Nissan Skyline GTR R34</span>
+            <span class="sc-cat">JDM Icon</span>
+          </div>
+        </div>
+        <div class="sc-card">
+          <img src="img/M4.jpg" alt="BMW M4 Competition" loading="lazy" />
+          <span class="sc-name-static">BMW M4 Competition</span>
+          <div class="sc-label">
+            <span class="sc-name">BMW M4 Competition</span>
+            <span class="sc-cat">Track Build</span>
+          </div>
+        </div>
+
+        <!-- Row 2: Supra + BMW M3 -->
+        <div class="sc-card">
+          <img src="img/supra.jpg" alt="Toyota GR Supra" loading="lazy" />
+          <span class="sc-name-static">Toyota GR Supra</span>
+          <div class="sc-label">
+            <span class="sc-name">Toyota GR Supra</span>
+            <span class="sc-cat">OEM+</span>
+          </div>
+        </div>
+        <div class="sc-card">
+          <img src="img/bmw.jpg" alt="BMW M3 G80 Stance" loading="lazy" />
+          <span class="sc-name-static">BMW M3 G80</span>
+          <div class="sc-label">
+            <span class="sc-name">BMW M3 G80</span>
+            <span class="sc-cat">OEM+</span>
+          </div>
+        </div>
+
+        <!-- Row 3: Porsche 992 — full width hero feature -->
+        <div class="sc-card wide">
+          <img src="img/porsche992.jpg" alt="Porsche 992 GT3" loading="lazy" />
+          <span class="sc-name-static">Porsche 992 GT3</span>
+          <div class="sc-label">
+            <span class="sc-name">Porsche 992 GT3 — HRE Edition</span>
+            <span class="sc-cat">Daily Sports</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ABOUT ──────────────────────────────────────────────── -->
+    <section class="about-split" aria-labelledby="about-h">
+      <div class="about-img">
+        <img
+          src="img/bmw-m2.jpg"
+          alt="BMW M2 Competition — DRASA Build"
+          loading="lazy"
+        />
+      </div>
+      <div class="about-copy reveal">
+        <p class="kicker">Our Story</p>
+        <h2
+          class="s-head"
+          id="about-h"
+          style="font-size: clamp(2.25rem, 5vw, 4.5rem)"
+        >
+          Built for<br />Enthusiasts.
+        </h2>
+        <div class="rule-l" style="margin: 1.5rem 0"></div>
+        <p class="s-body">
+          DRASA Motorsports targets every driver — from first-timers to hardcore
+          enthusiasts who demand the true potential of any car. Premium parts,
+          world-class service, through DRASA Performance.
+        </p>
+        <div
+          style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2rem"
+        >
+          <a href="Aboutus.html" class="btn btn-lime">Our Story</a>
+          <a href="Feedback.html" class="btn btn-ghost">Leave Feedback</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SERVICES — BENTO GRID ──────────────────────────────── -->
+    <section
+      style="border-top: 1px solid var(--border); padding: 6.5rem 2.5rem"
+      aria-labelledby="svc-h"
+    >
+      <div style="max-width: var(--max-w); margin: 0 auto">
+        <p class="kicker">What We Do</p>
+        <h2 class="s-head" id="svc-h">The Workshop</h2>
+        <div class="bento-grid">
+          <!-- Engine Tuning — tall, anchor -->
+          <div class="bento-cell bc-2 br-2">
+            <div class="bento-num">01</div>
+            <div class="bento-name">Engine Tuning</div>
+            <p class="bento-desc">
+              Flash tunes and full engine management for maximum power on every
+              rev. ECU remaps, power upgrades, and real-world performance gains.
+            </p>
+          </div>
+          <!-- Suspension -->
+          <div class="bento-cell bc-2">
+            <div class="bento-num">02</div>
+            <div class="bento-name">Suspension Setup</div>
+            <p class="bento-desc">
+              BC Racing coilovers, camber arms, full alignment specs — street
+              and track.
+            </p>
+          </div>
+          <!-- Exhaust -->
+          <div class="bento-cell bc-2">
+            <div class="bento-num">03</div>
+            <div class="bento-name">Exhaust Systems</div>
+            <p class="bento-desc">
+              Aftermarket exhaust for the motorsport soundtrack — pops, bangs,
+              pure presence.
+            </p>
+          </div>
+          <!-- Wheels — wide -->
+          <div class="bento-cell bc-4">
+            <div class="bento-num">04</div>
+            <div class="bento-name">Wheel & Tyre Fitment</div>
+            <p class="bento-desc">
+              HRE, Advan, premium rims with performance Toyo and Michelin
+              rubber. Fitment that makes a statement from every angle.
+            </p>
+          </div>
+          <!-- Body & Aero -->
+          <div class="bento-cell bc-3">
+            <div class="bento-num">05</div>
+            <div class="bento-name">Body & Aero</div>
+            <p class="bento-desc">
+              Custom bodykits and aero packages that command attention at every
+              corner.
+            </p>
+          </div>
+          <!-- Brakes -->
+          <div class="bento-cell bc-3">
+            <div class="bento-num">06</div>
+            <div class="bento-name">Brake Upgrades</div>
+            <p class="bento-desc">
+              Aftermarket systems from DRASA Performance — stop as hard as you
+              go.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA BAND ───────────────────────────────────────────── -->
+    <div class="cta-band">
+      <div>
+        <h2 class="cta-hl">Ready to build your<br />dream car?</h2>
+        <p class="cta-sub">
+          Join the DRASA subscription list — first access to everything.
+        </p>
+      </div>
+      <!-- Lime button used ONCE, surgically -->
+      <a
+        href="Registration.html"
+        class="btn btn-lime"
+        style="padding: 1rem 2.5rem; font-size: 0.72rem"
+        >Register Now <span class="arr">→</span></a
+      >
+    </div>
+
+    <!-- ── FOOTER ─────────────────────────────────────────────── -->
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <img
+          src="img/drasa.png"
+          alt=""
+          class="footer-logo"
+          aria-hidden="true"
+        />
+        <span class="footer-name"
+          >DRASA <span class="l">Motorsports</span></span
+        >
+      </div>
+      <span class="footer-txt"
+        >Lilliput, Montego Bay, Jamaica · 876-000-000</span
+      >
+      <span class="footer-txt">© 2025 DRASA Motorsports</span>
+    </footer>
+
+    <script>
+      /* ── Loader dismiss ────────────────────────────────────── */
+      document.body.classList.add("loading");
+      const loader = document.getElementById("loader");
+      // Bar animates for 1.8s, hold briefly, then fade out
+      setTimeout(() => {
+        loader.classList.add("hidden");
+        document.body.classList.remove("loading");
+      }, 2200); // 1.8s fill + 0.4s hold
+
+      /* ── Parallax hero ─────────────────────────────────────── */
+      const heroText = document.getElementById("heroText");
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          // Subtle parallax — text rises slower than the page scrolls
+          if (y < window.innerHeight && heroText) {
+            heroText.style.transform = `translateY(${y * 0.28}px)`;
+          }
+        },
+        { passive: true },
+      );
+
+      /* ── Gear readout ──────────────────────────────────────── */
+      const gearVal = document.getElementById("gearVal");
+      const gears = ["N", "1", "2", "3", "4", "5", "6"];
+      window.addEventListener(
+        "scroll",
+        () => {
+          const pct =
+            window.scrollY /
+            Math.max(document.body.scrollHeight - window.innerHeight, 1);
+          gearVal.textContent = gears[Math.min(Math.floor(pct * 6.5), 6)];
+        },
+        { passive: true },
+      );
+
+      /* ── Scroll reveal ─────────────────────────────────────── */
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -30px 0px" },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

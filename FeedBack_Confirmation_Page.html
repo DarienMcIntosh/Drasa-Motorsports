@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DRASA Motorsports — Feedback Received</title>
+    <link rel="icon" type="image/png" href="drasa.png" />
+    <link rel="stylesheet" href="drasa.css" />
+    <style>
+      .fbc-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: calc(100vh - var(--nav-h));
+      }
+      .fbc-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 5rem 4rem 5rem 2.5rem;
+        border-right: 1px solid var(--border);
+      }
+      .fbc-left h1 {
+        font-family: var(--f-display);
+        font-weight: 800;
+        font-size: clamp(3.5rem, 8vw, 7rem);
+        text-transform: uppercase;
+        line-height: 0.9;
+        color: var(--white);
+        margin-bottom: 0.5rem;
+      }
+      .fbc-left h1 .l {
+        color: var(--lime);
+      }
+      .scan-bar {
+        width: 100%;
+        height: 2px;
+        background: var(--border);
+        position: relative;
+        overflow: hidden;
+        margin: 2rem 0;
+      }
+      .scan-fill {
+        position: absolute;
+        top: 0;
+        left: -30%;
+        width: 30%;
+        height: 100%;
+        background: var(--lime);
+        animation: scan 2.5s ease-in-out infinite;
+      }
+      @keyframes scan {
+        from {
+          left: -30%;
+        }
+        to {
+          left: 130%;
+        }
+      }
+      .fbc-right {
+        position: relative;
+        overflow: hidden;
+        background: var(--raised);
+        display: grid;
+        place-items: center;
+      }
+      .fbc-right img {
+        width: auto;
+        height: auto;
+      }
+      @media (max-width: 768px) {
+        .fbc-grid {
+          grid-template-columns: 1fr;
+        }
+        .fbc-left {
+          padding: 3.5rem 1.25rem;
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+        }
+        .fbc-right {
+          height: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="site-nav">
+      <a href="Index.html" class="nav-brand"
+        ><img src="img/drasa.png" alt="DRASA" class="nav-logo" /><span
+          class="nav-name"
+          >DRASA <span class="l">Motorsports</span></span
+        ></a
+      >
+      <div class="nav-links">
+        <a href="Index.html" class="nav-link">Home</a>
+        <div class="nav-dd">
+          <button class="nav-btn">About ▾</button>
+          <div class="dd-panel">
+            <a href="Aboutus.html" class="dd-link">About DRASA</a
+            ><a href="Site.html" class="dd-link">Site Documentation</a>
+          </div>
+        </div>
+        <a href="Gallery.html" class="nav-link">Gallery</a
+        ><a href="Registration.html" class="nav-link">Registration</a
+        ><a href="Feedback.html" class="nav-link active">Feedback</a>
+      </div>
+      <div class="gear-hud">
+        <span class="gear-hud-lbl">Gear</span
+        ><span class="gear-hud-val">4</span>
+      </div>
+    </nav>
+    <div class="page-wrap">
+      <div class="fbc-grid">
+        <div class="fbc-left">
+          <div
+            class="confirm-ico"
+            style="
+              margin: 0 0 2rem;
+              width: 64px;
+              height: 64px;
+              font-size: 1.4rem;
+            "
+          >
+            ✉
+          </div>
+          <span class="confirm-tag" style="display: block; margin-bottom: 1rem"
+            >Feedback Received</span
+          >
+          <h1>Thank<br /><span class="l">You.</span></h1>
+          <div class="scan-bar"><div class="scan-fill"></div></div>
+          <p class="confirm-body" style="text-align: left">
+            Your feedback has been submitted to the DRASA team. Every response
+            helps us push our service further. We review all submissions within
+            48 hours.
+          </p>
+          <div class="confirm-acts" style="justify-content: flex-start">
+            <a href="Index.html" class="btn btn-lime"
+              >Back to Home <span class="arr">→</span></a
+            ><a href="Feedback.html" class="btn btn-ghost">Submit Another</a>
+          </div>
+        </div>
+        <div class="fbc-right">
+          <img
+            src="img/e30.jpg"
+            alt="High-speed automotive footage"
+            loading="eager"
+          />
+        </div>
+      </div>
+      <footer class="site-footer">
+        <div class="footer-brand">
+          <img
+            src="img/drasa.png"
+            alt=""
+            class="footer-logo"
+            aria-hidden="true"
+          /><span class="footer-name"
+            >DRASA <span class="l">Motorsports</span></span
+          >
+        </div>
+        <span class="footer-txt">© 2025 DRASA Motorsports</span>
+      </footer>
+    </div>
+  </body>
+</html>
